@@ -1,0 +1,88 @@
+.app {
+  text-align: center;
+  margin-top: 10%;
+  padding: 15px;
+  background-color: #18171c;
+  border-radius: 10px;
+  input:focus {
+    outline: none;
+  }
+  h1 {
+    color: #a2a4f0;
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    input {
+      background-color: #322d36;
+      color: white;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .add-todo {
+      min-height: 30px;
+      min-width: 200px;
+      cursor: pointer;
+      background-color: #7d5bf4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+    }
+    .add-todo:hover,
+    .add-todo:active {
+      background-color: #371b4d;
+    }
+  }
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.todo {
+  background-color: #2f2d36;
+  color: white;
+  padding: 15px 10px 15px 10px;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin: 20px 0 20px 0;
+  &__text {
+    padding: 0 10px 0 10px;
+    max-width: 200px;
+    word-break: break-all;
+  }
+  &__date-time {
+    display: flex;
+    flex-direction: column;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    gap: 20px;
+    :first-child {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      button {
+        cursor: pointer;
+      }
+    }
+    :last-child {
+      display: flex;
+      align-items: center;
+      // justify-content: end;
+      justify-content: space-between;
+    }
+  }
+  &__delete {
+    color: white;
+    cursor: pointer;
+  }
+}
+input:checked + span {
+  text-decoration: line-through;
+}
