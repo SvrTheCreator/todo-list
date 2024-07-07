@@ -14,18 +14,27 @@ const todoSlice = createSlice({
       const day = currentDate.getDate()
       const month = currentDate.getMonth() + 1
       const year = currentDate.getFullYear()
+      function twoDigits(num) {
+        return ('0' + num).slice(-2)
+      }
+
       if (action.payload.text.trim().length) {
         state.todos.unshift({
-          id: Math.random(),
+          id: Math.floor(Math.random() * 1000),
           text: action.payload.text,
           completed: false,
-          // сделать дату
-          time: `${Hour + ':' + Minutes + ':' + Seconds}`,
-          date: `${day + '/' + month + '/' + year}`,
+          order: Math.floor(Math.random() * 1000),
+          time: `${
+            twoDigits(Hour) +
+            ':' +
+            twoDigits(Minutes) +
+            ':' +
+            twoDigits(Seconds)
+          }`,
+          date: `${
+            twoDigits(day) + '/' + twoDigits(month) + '/' + twoDigits(year)
+          }`,
         })
-      }
-      if (action.payload.text.trim().length <= 0) {
-        alert('Не должно быть пустой строки')
       }
     },
     removeTodo(state, action) {
