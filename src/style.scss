@@ -15,9 +15,17 @@ body {
   margin: 0% auto;
   max-width: 499px;
 }
-@media (min-width: 769px) {
+@media (min-width: 480px) {
   .container {
-    max-width: 1140px;
+    max-width: 767px;
+  }
+  .app {
+    width: 400px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 991px;
   }
   .app {
     width: 600px;
@@ -25,5 +33,13 @@ body {
   .todo__text {
     min-width: 400px;
     font-size: 20px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 1199px;
+  }
+  .app {
+    width: 800px;
   }
 }
