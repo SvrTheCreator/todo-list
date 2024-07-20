@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { removeTodo, toggleTodoCompleted, changeText } from '../store/todoSlice'
-import Modal from './Modal'
+import ModalWindow from './Modal'
+import { Card } from 'antd'
+import { CloseOutlined, EditOutlined } from '@ant-design/icons'
 
 export default function TodoItem({ id, text, completed, time, date }) {
   const dispatch = useDispatch()
@@ -24,33 +26,46 @@ export default function TodoItem({ id, text, completed, time, date }) {
   return (
     <>
       <li className='todo'>
-        <div className='todo__content'>
-          <div>
+        <Card className='todo__content'>
+          <div className='todo__upper-content'>
             <input
               type='checkbox'
               checked={completed}
               onChange={() => dispatch(toggleTodoCompleted({ id }))}
             />
+            {/* <span className='todo__text'>{text}</span> */}
             <span className='todo__text'>{text}</span>
-            <div
+            {/* <div
               className='todo__delete gg-close'
               onClick={() => dispatch(removeTodo({ id }))}
-            ></div>
+            ></div> */}
+            <CloseOutlined onClick={() => dispatch(removeTodo({ id }))} />
           </div>
-          <div>
+          <div className='todo__down-content'>
             <div className='todo__date-time'>
               <div>{date}</div>
               <div>{time}</div>
             </div>
-            <button
+            <EditOutlined
               style={{ cursor: 'pointer' }}
               onClick={() => setOpenChangeModal(true)}
-              className='gg-edit-markup'
-            ></button>
+            />
+            {/* <button
+              style={{ cursor: 'pointer' }}
+              onClick={() => setOpenChangeModal(true)}
+              // className='gg-edit-markup'
+            >
+              <EditOutlined />
+            </button> */}
+            {/* <button
+              style={{ cursor: 'pointer' }}
+              onClick={() => setOpenChangeModal(true)}
+              // className='gg-edit-markup'
+            ></button> */}
           </div>
-        </div>
+        </Card>
       </li>
-      <Modal
+      <ModalWindow
         newValue={newValue}
         setNewValue={setNewValue}
         changeNewTodo={changeNewTodo}

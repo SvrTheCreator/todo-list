@@ -1,17 +1,16 @@
 import React from 'react'
+import { Button, Space, Input } from 'antd'
 
 export default function InputField({ text, setText, addTodo }) {
   return (
-    <label>
-      <input
-        className='input'
+    <div className='todo__label'>
+      <Input
         value={text}
         onChange={(e) => setText(e.target.value)}
         type='text'
+        placeholder='Todo'
       />
-      <button className='add-todo' onClick={addTodo}>
-        Add Todo
-      </button>
-    </label>
+      <Button onClick={addTodo}>Add Todo</Button>
+    </div>
   )
 }

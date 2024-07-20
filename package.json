@@ -10,12 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.3.7",
     "@reduxjs/toolkit": "^2.2.6",
+    "antd": "^5.19.2",
     "css.gg": "^2.1.1",
     "normalize.css": "^8.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-redux": "^9.1.2"
+    "react-redux": "^9.1.2",
+    "react-router": "6",
+    "react-router-dom": "6"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
