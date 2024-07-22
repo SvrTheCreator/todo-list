@@ -35,6 +35,7 @@ const todoSlice = createSlice({
             twoDigits(day) + '/' + twoDigits(month) + '/' + twoDigits(year)
           }`,
         })
+        // localStorage.setItem('todos', JSON.stringify(state.todos))
       }
     },
     removeTodo(state, action) {
