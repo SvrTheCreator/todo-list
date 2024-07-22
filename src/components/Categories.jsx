@@ -28,11 +28,6 @@ export default function Categories() {
 
   return (
     <Menu
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
       onClick={onClick}
       selectedKeys={[currentCategory]}
       mode='horizontal'

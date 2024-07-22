@@ -8,9 +8,6 @@
 }
 
 .ant-card .ant-card-body {
-  width: 100%;
-  @extend %flex-element-center-column;
-  gap: 10px;
   .todo__label {
     width: 100%;
     @extend %flex-element-center-column;
@@ -23,59 +20,77 @@
     padding: 0;
     .todo {
       margin: 20px 0 20px 0;
-      .todo__down-content,
-      .todo__upper-content {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      &__text {
-        padding: 0 10px 0 10px;
-        max-width: 100px;
-        word-break: break-all;
-        text-align: center;
-      }
+      // .todo__down-content,
+      // .todo__upper-content {
+      //   width: 100%;
+      //   display: flex;
+      //   justify-content: space-between;
+      //   align-items: center;
+      // }
       &__date-time {
         color: grey;
       }
-      &__content {
+      &__content .ant-card-body {
+        display: grid;
+        grid-template-areas:
+          'input todo close'
+          'date todo  change ';
+        gap: 10px;
+      }
+      &__text {
+        max-width: 100px;
+        word-break: break-all;
         display: flex;
+        justify-content: center;
+        grid-area: todo;
+      }
+
+      &__date-time {
+        grid-area: date;
         flex-direction: column;
-        gap: 20px;
+      }
+      &__checked-input {
+        max-width: 56px;
+        grid-area: input;
+      }
+      &__close {
+        grid-area: close;
+      }
+      &__change {
+        grid-area: change;
+      }
+      &__text,
+      &__date-time,
+      &__checked-input,
+      &__close,
+      &__change {
+        @extend %flex-element-center;
       }
     }
   }
 }
-.todo__checked-input:checked + span {
-  text-decoration: line-through;
-}
+
 // input:checked + span {
 //   text-decoration: line-through;
 // }
 
 @media (min-width: 480px) {
-  // .ant-card .ant-card-body {
-  //   width: 400px;
-  // }
   .todo__text {
     min-width: 200px;
   }
 }
 @media (min-width: 768px) {
-  // .ant-card .ant-card-body {
-  //   width: 600px;
-  // }
   .todo__text {
     min-width: 400px;
     font-size: 20px;
   }
 }
 @media (min-width: 992px) {
+  .todo__text {
+    min-width: 600px;
+    font-size: 20px;
+  }
   .app {
     min-width: 800px;
   }
-  // .ant-card .ant-card-body {
-  //   width: 800px;
-  // }
 }

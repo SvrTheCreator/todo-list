@@ -27,50 +27,31 @@ export default function TodoItem({ id, text, completed, time, date }) {
     <>
       <li className='todo'>
         <Card className='todo__content'>
-          <div className='todo__upper-content'>
-            <Switch
-              className='todo__checked-input'
-              type='checkbox'
-              checked={completed}
-              onChange={() => dispatch(toggleTodoCompleted({ id }))}
-              checkedChildren={<CloseOutlined />}
-              unCheckedChildren={<CheckOutlined />}
-            />
-            {/* <input
-              type='checkbox'
-              checked={completed}
-              onChange={() => dispatch(toggleTodoCompleted({ id }))}
-            /> */}
-            {/* <span className='todo__text'>{text}</span> */}
-            <span className='todo__text'>{text}</span>
-            {/* <div
-              className='todo__delete gg-close'
-              onClick={() => dispatch(removeTodo({ id }))}
-            ></div> */}
-            <CloseOutlined onClick={() => dispatch(removeTodo({ id }))} />
+          {/* <div className='todo__upper-content'> */}
+          <Switch
+            className='todo__checked-input'
+            type='checkbox'
+            checked={completed}
+            onChange={() => dispatch(toggleTodoCompleted({ id }))}
+            checkedChildren={<CloseOutlined />}
+            unCheckedChildren={<CheckOutlined />}
+          />
+          <span className='todo__text'>{text}</span>
+          <CloseOutlined
+            className='todo__close'
+            onClick={() => dispatch(removeTodo({ id }))}
+          />
+          {/* </div> */}
+          {/* <div className='todo__down-content'> */}
+          <div className='todo__date-time'>
+            <div>{date}</div>
+            <div>{time}</div>
           </div>
-          <div className='todo__down-content'>
-            <div className='todo__date-time'>
-              <div>{date}</div>
-              <div>{time}</div>
-            </div>
-            <EditOutlined
-              style={{ cursor: 'pointer' }}
-              onClick={() => setOpenChangeModal(true)}
-            />
-            {/* <button
-              style={{ cursor: 'pointer' }}
-              onClick={() => setOpenChangeModal(true)}
-              // className='gg-edit-markup'
-            >
-              <EditOutlined />
-            </button> */}
-            {/* <button
-              style={{ cursor: 'pointer' }}
-              onClick={() => setOpenChangeModal(true)}
-              // className='gg-edit-markup'
-            ></button> */}
-          </div>
+          <EditOutlined
+            className='todo__change'
+            onClick={() => setOpenChangeModal(true)}
+          />
+          {/* </div> */}
         </Card>
       </li>
       <ModalWindow
