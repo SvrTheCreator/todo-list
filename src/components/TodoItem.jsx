@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { removeTodo, toggleTodoCompleted, changeText } from '../store/todoSlice'
 import ModalWindow from './Modal'
-import { Card } from 'antd'
-import { CloseOutlined, EditOutlined } from '@ant-design/icons'
+import { Card, Switch } from 'antd'
+import { CloseOutlined, EditOutlined, CheckOutlined } from '@ant-design/icons'
 
 export default function TodoItem({ id, text, completed, time, date }) {
   const dispatch = useDispatch()
@@ -28,11 +28,19 @@ export default function TodoItem({ id, text, completed, time, date }) {
       <li className='todo'>
         <Card className='todo__content'>
           <div className='todo__upper-content'>
-            <input
+            <Switch
+              className='todo__checked-input'
               type='checkbox'
               checked={completed}
               onChange={() => dispatch(toggleTodoCompleted({ id }))}
+              checkedChildren={<CloseOutlined />}
+              unCheckedChildren={<CheckOutlined />}
             />
+            {/* <input
+              type='checkbox'
+              checked={completed}
+              onChange={() => dispatch(toggleTodoCompleted({ id }))}
+            /> */}
             {/* <span className='todo__text'>{text}</span> */}
             <span className='todo__text'>{text}</span>
             {/* <div
