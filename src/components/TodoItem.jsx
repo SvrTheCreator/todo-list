@@ -27,7 +27,6 @@ export default function TodoItem({ id, text, completed, time, date }) {
     <>
       <li className='todo'>
         <Card className='todo__content'>
-          {/* <div className='todo__upper-content'> */}
           <Switch
             className='todo__checked-input'
             type='checkbox'
@@ -36,13 +35,11 @@ export default function TodoItem({ id, text, completed, time, date }) {
             checkedChildren={<CloseOutlined />}
             unCheckedChildren={<CheckOutlined />}
           />
-          <span className='todo__text'>{text}</span>
+          <div className='todo__text'>{text}</div>
           <CloseOutlined
             className='todo__close'
             onClick={() => dispatch(removeTodo({ id }))}
           />
-          {/* </div> */}
-          {/* <div className='todo__down-content'> */}
           <div className='todo__date-time'>
             <div>{date}</div>
             <div>{time}</div>
@@ -51,7 +48,6 @@ export default function TodoItem({ id, text, completed, time, date }) {
             className='todo__change'
             onClick={() => setOpenChangeModal(true)}
           />
-          {/* </div> */}
         </Card>
       </li>
       <ModalWindow

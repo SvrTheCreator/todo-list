@@ -1,13 +1,10 @@
+// .app {
+//   text-align: center;
+//   min-width: 288.2px;
+// }
 .app {
   text-align: center;
-  // margin-top: 10%;
-  // padding: 15px;
-  // background-color: #18171c;
-  // border-radius: 10px;
-  min-width: 265.67px;
-}
-
-.ant-card .ant-card-body {
+  min-width: 288.2px;
   .todo__label {
     width: 100%;
     @extend %flex-element-center-column;
@@ -20,13 +17,6 @@
     padding: 0;
     .todo {
       margin: 20px 0 20px 0;
-      // .todo__down-content,
-      // .todo__upper-content {
-      //   width: 100%;
-      //   display: flex;
-      //   justify-content: space-between;
-      //   align-items: center;
-      // }
       &__date-time {
         color: grey;
       }
@@ -35,22 +25,27 @@
         grid-template-areas:
           'input todo close'
           'date todo  change ';
-        gap: 10px;
+        column-gap: 10px;
       }
       &__text {
         max-width: 100px;
-        word-break: break-all;
+        // word-break: break-all;
         display: flex;
         justify-content: center;
         grid-area: todo;
+        hyphens: auto;
       }
 
       &__date-time {
         grid-area: date;
         flex-direction: column;
+        div {
+          font-size: 10px;
+        }
       }
       &__checked-input {
-        max-width: 56px;
+        width: 20px;
+        // max-width: 56px;
         grid-area: input;
       }
       &__close {
@@ -65,6 +60,7 @@
       &__close,
       &__change {
         @extend %flex-element-center;
+        margin: 5px 0 5px 0;
       }
     }
   }
@@ -73,16 +69,37 @@
 // input:checked + span {
 //   text-decoration: line-through;
 // }
-
 @media (min-width: 480px) {
   .todo__text {
-    min-width: 200px;
+    min-width: 250px;
+  }
+  .app {
+    min-width: 388.2px;
+    ul {
+      .todo__date-time {
+        div {
+          font-size: 14px;
+        }
+      }
+      .todo__checked-input {
+        width: 56px;
+      }
+    }
   }
 }
+
 @media (min-width: 768px) {
   .todo__text {
     min-width: 400px;
     font-size: 20px;
+  }
+  .app {
+    min-width: 588.2px;
+    &__date-time {
+      div {
+        font-size: 14px;
+      }
+    }
   }
 }
 @media (min-width: 992px) {
@@ -92,5 +109,10 @@
   }
   .app {
     min-width: 800px;
+    &__date-time {
+      div {
+        font-size: 14px;
+      }
+    }
   }
 }
