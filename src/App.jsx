@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Typography, Card } from 'antd'
+import { Typography, Card, FloatButton } from 'antd'
 import TodoList from './components/TodoList'
 import InputField from './components/InputField'
 import { useDispatch, useSelector } from 'react-redux'
@@ -54,6 +54,7 @@ function App() {
         />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
+      <FloatButton.BackTop />
     </Card>
   )
 }
