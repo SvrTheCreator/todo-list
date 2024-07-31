@@ -58,11 +58,5 @@ function App() {
     </Card>
   )
 }
-// <div className='app'>
-//   <Title level={1}>Todo list</Title>
-//   {/* <h1>Todo list</h1> */}
-//   <InputField text={text} setText={setText} addTodo={addTask} />
-//   <TodoList />
-// </div>
 
 export default App

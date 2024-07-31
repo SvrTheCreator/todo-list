@@ -2,13 +2,31 @@ import React, { useState, useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 import { removeTodo, toggleTodoCompleted, changeText } from '../store/todoSlice'
 import ModalWindow from './Modal'
-import { Card, Switch, Tooltip, Button } from 'antd'
+import { Card, Switch, notification, Button } from 'antd'
 import { CloseOutlined, EditOutlined, CheckOutlined } from '@ant-design/icons'
+
+const Context = React.createContext({
+  name: 'Default',
+})
 
 export default function TodoItem({ id, text, completed, time, date }) {
   const dispatch = useDispatch()
   const [newValue, setNewValue] = useState('')
   const [openChangeModal, setOpenChangeModal] = useState(false)
+
+  const [api, contextHolder] = notification.useNotification()
+  const openNotification = (placement) => {
+    api.info({
+      message: `The task has been changed `,
+      placement,
+    })
+  }
+  const contextValue = useMemo(
+    () => ({
+      name: 'Ant Design',
+    }),
+    []
+  )
 
   const handleKeyPress = (event) => {
     if (event.keyCode === 13) {
@@ -21,15 +39,18 @@ export default function TodoItem({ id, text, completed, time, date }) {
       dispatch(changeText({ id, newValue }))
       setNewValue('')
       setOpenChangeModal(false)
+      openNotification('top')
     }
     if (newValue.trim().length <= 0) {
       setOpenChangeModal(true)
       setNewValue('')
+      openNotification('top')
     }
   }
 
   return (
-    <>
+    <Context.Provider value={contextValue}>
+      {contextHolder}
       <li className='todo'>
         <Card className='todo__content'>
           <Switch
@@ -72,6 +93,6 @@ export default function TodoItem({ id, text, completed, time, date }) {
         onClose={() => setOpenChangeModal(false)}
         handleKeyPress={handleKeyPress}
       />
-    </>
+    </Context.Provider>
   )
 }
