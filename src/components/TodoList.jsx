@@ -75,7 +75,7 @@ export default function TodoList({ currentCategory }) {
 
   return (
     <>
-      <Search {...{ search }} />
+      {todos.length > 0 && <Search {...{ search }} />}
       {category()}
     </>
   )
