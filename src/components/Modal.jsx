@@ -9,6 +9,7 @@ export default function ModalWindow({
   changeNewTodo,
   isOpen,
   onClose,
+  handleKeyPress,
 }) {
   return (
     <>
@@ -27,6 +28,7 @@ export default function ModalWindow({
                 Change Todo
               </Title>
               <Input
+                onKeyDown={handleKeyPress}
                 className='modal__input'
                 onChange={(e) => setNewValue(e.target.value)}
                 value={newValue}
@@ -40,10 +42,6 @@ export default function ModalWindow({
                 >
                   Change
                 </Button>
-                {/* <button
-                  className='modal__close-button gg-close'
-                  onClick={onClose}
-                ></button> */}
               </div>
             </div>
           </div>

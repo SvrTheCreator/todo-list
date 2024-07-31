@@ -5,17 +5,21 @@ import InputField from './components/InputField'
 import { useDispatch, useSelector } from 'react-redux'
 import { addTodo } from './store/todoSlice'
 import Categories from './components/Categories'
-import Active from './components/TodoCategory/Active'
-import Completed from './components/TodoCategory/Completed'
-import NotFoundPage from './components/TodoCategory/NotFoundPage'
+import NotFoundPage from './components/NotFoundPage'
 import { Routes, Route } from 'react-router-dom'
 
 const { Title } = Typography
 
 function App() {
   const [text, setText] = useState('')
+  const [currentCategory, setCurrentCategory] = useState('all')
   const dispatch = useDispatch()
   const todos = useSelector((state) => state.todos.todos)
+
+  const onClickCategory = (e) => {
+    // console.log('click ', e)
+    setCurrentCategory(e.key)
+  }
 
   const addTask = () => {
     dispatch(addTodo({ text }))
@@ -28,11 +32,26 @@ function App() {
         Todo list
       </Title>
       <InputField text={text} setText={setText} addTodo={addTask} />
-      {todos.length > 0 && <Categories />}
+      {todos.length > 0 && (
+        <Categories
+          currentCategory={currentCategory}
+          setCurrentCategory={setCurrentCategory}
+          onClickCategory={onClickCategory}
+        />
+      )}
       <Routes>
-        <Route path='/' element={<TodoList />} />
-        <Route path='/active' element={<Active />} />
-        <Route path='/completed' element={<Completed />} />
+        <Route
+          path='/'
+          element={<TodoList currentCategory={currentCategory} />}
+        />
+        <Route
+          path='/active'
+          element={<TodoList currentCategory={currentCategory} />}
+        />
+        <Route
+          path='/completed'
+          element={<TodoList currentCategory={currentCategory} />}
+        />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </Card>

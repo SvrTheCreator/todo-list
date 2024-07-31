@@ -1,10 +1,7 @@
 @import 'normalize.css';
 @import './scss/app.scss';
-@import './scss/modal.scss';
 @import './scss/constants.scss';
-// body {
-//   background-color: #121215;
-// }
+
 #root {
   margin: 0 auto;
   height: 100%;
@@ -12,38 +9,3 @@
   align-items: center;
   justify-content: center;
 }
-// .container {
-//   margin: 0% auto;
-//   max-width: 499px;
-// }
-// @media (min-width: 480px) {
-//   .container {
-//     max-width: 767px;
-//   }
-//   .app {
-//     width: 400px;
-//   }
-//   .todo__text {
-//     min-width: 200px;
-//   }
-// }
-// @media (min-width: 768px) {
-//   .container {
-//     max-width: 991px;
-//   }
-//   .app {
-//     width: 600px;
-//   }
-//   .todo__text {
-//     min-width: 400px;
-//     font-size: 20px;
-//   }
-// }
-// @media (min-width: 992px) {
-//   .container {
-//     max-width: 1199px;
-//   }
-//   .app {
-//     width: 800px;
-//   }
-// }

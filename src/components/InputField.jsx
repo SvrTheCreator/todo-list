@@ -1,6 +1,5 @@
 import React from 'react'
 import { Button, Input } from 'antd'
-
 export default function InputField({ text, setText, addTodo }) {
   const handleKeyPress = (event) => {
     if (event.keyCode === 13) {

@@ -10,6 +10,12 @@ export default function TodoItem({ id, text, completed, time, date }) {
   const [newValue, setNewValue] = useState('')
   const [openChangeModal, setOpenChangeModal] = useState(false)
 
+  const handleKeyPress = (event) => {
+    if (event.keyCode === 13) {
+      changeNewTodo()
+    }
+  }
+
   const changeNewTodo = () => {
     if (newValue.trim().length) {
       dispatch(changeText({ id, newValue }))
@@ -19,7 +25,6 @@ export default function TodoItem({ id, text, completed, time, date }) {
     if (newValue.trim().length <= 0) {
       setOpenChangeModal(true)
       setNewValue('')
-      alert('Не должно быть пустой строки')
     }
   }
 
@@ -56,6 +61,7 @@ export default function TodoItem({ id, text, completed, time, date }) {
         changeNewTodo={changeNewTodo}
         isOpen={openChangeModal}
         onClose={() => setOpenChangeModal(false)}
+        handleKeyPress={handleKeyPress}
       />
     </>
   )

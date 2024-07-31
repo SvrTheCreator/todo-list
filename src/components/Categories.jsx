@@ -18,20 +18,15 @@ const category = [
   },
 ]
 
-export default function Categories() {
-  const [currentCategory, setCurrentCategory] = useState('all')
-
-  const onClick = (e) => {
-    // console.log('click ', e)
-    setCurrentCategory(e.key)
-  }
-
+export default function Categories({ currentCategory, onClickCategory }) {
   return (
-    <Menu
-      onClick={onClick}
-      selectedKeys={[currentCategory]}
-      mode='horizontal'
-      items={category}
-    />
+    <>
+      <Menu
+        onClick={onClickCategory}
+        selectedKeys={[currentCategory]}
+        mode='horizontal'
+        items={category}
+      ></Menu>
+    </>
   )
 }

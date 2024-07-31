@@ -4,6 +4,7 @@ const todoSlice = createSlice({
   name: 'todos',
   initialState: {
     todos: [],
+    filteredTodos: [],
   },
   reducers: {
     addTodo(state, action) {
@@ -35,7 +36,6 @@ const todoSlice = createSlice({
             twoDigits(day) + '/' + twoDigits(month) + '/' + twoDigits(year)
           }`,
         })
-        // localStorage.setItem('todos', JSON.stringify(state.todos))
       }
     },
     removeTodo(state, action) {
@@ -52,8 +52,6 @@ const todoSlice = createSlice({
         (todo) => todo.id === action.payload.id
       )
       changeTodo.text = action.payload.newValue
-
-      // console.log(action.payload.id)
     },
   },
 })
