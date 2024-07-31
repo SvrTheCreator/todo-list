@@ -18,21 +18,13 @@ export default function TodoList({ currentCategory }) {
     let currentTodos = []
     let newList = []
     if (value !== '') {
-      //делаем копию нашего стейта
       currentTodos = todos
-      //фильтруем стейт в поисках совпадений
       newList = currentTodos.filter((todo) => {
-        // значение которое пользователь ввел и которое у нас
-        // в стейте делаем строчными буквами чтобы конфликтов не было
-        // мало ли пользователь ввель строчными буквами а у нас заглавные
         const lc = todo.text.toLowerCase()
         const filter = value.toLowerCase()
-        // проверяем есть ли у нас этот элемент если есть возвращаем этот элемент
         return lc.includes(filter)
       })
     } else {
-      // если в input ничего нету то есть пользователь стерь то
-      // что ввел тогда возвращаем все задачи
       newList = todos
     }
     setFiltered(newList)
