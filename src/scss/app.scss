@@ -1,10 +1,13 @@
 .app {
   text-align: center;
-  min-width: 288.2px;
+  min-width: 317.81px;
   .todo__label {
     width: 100%;
     @extend %flex-element-center-column;
     gap: 20px;
+  }
+  .todo__text {
+    width: 200px;
   }
   ul {
     width: 100%;
@@ -64,7 +67,7 @@
     min-width: 250px;
   }
   .app {
-    min-width: 438.2px;
+    min-width: 456.2px;
     ul {
       .todo__date-time {
         div {
@@ -84,7 +87,7 @@
     font-size: 20px;
   }
   .app {
-    min-width: 588.2px;
+    min-width: 606.2px;
     &__date-time {
       div {
         font-size: 14px;
@@ -98,7 +101,7 @@
     font-size: 20px;
   }
   .app {
-    min-width: 800px;
+    min-width: 806.2px;
     &__date-time {
       div {
         font-size: 14px;
