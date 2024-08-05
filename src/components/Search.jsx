@@ -1,17 +1,28 @@
 import React from 'react'
 import { Input } from 'antd'
+import Sorting from './Sorting'
 
 export default function Search(props) {
   return (
-    <Input
+    <div
       style={{
-        display: 'flex',
-        justifyContent: 'start',
         marginTop: '20px',
-        width: 200,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: '20px',
       }}
-      onChange={({ target: { value } }) => props.search(value)}
-      placeholder='Search todo'
-    />
+    >
+      <Input
+        style={{
+          display: 'flex',
+          justifyContent: 'start',
+          // width: 200,
+        }}
+        onChange={({ target: { value } }) => props.search(value)}
+        placeholder='Search todo'
+      />
+      <Sorting />
+    </div>
   )
 }

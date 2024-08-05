@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import TodoItem from './TodoItem'
 import { useSelector } from 'react-redux'
 import Search from './Search'
+import NowEmpty from './NowEmpty'
 
 export default function TodoList({ currentCategory }) {
   const todos = useSelector((state) => state.todos.todos)
@@ -31,15 +32,18 @@ export default function TodoList({ currentCategory }) {
   }
 
   function AllItems(params) {
+    const status = filtered
+      .filter((el) => el.completed === params)
+      .map((todo) => <TodoItem key={todo.id} {...todo} />)
     if (currentCategory === 'completed' || currentCategory === 'active') {
       return (
         <ul>
-          {filtered
+          {status.length > 0 ? status : <NowEmpty />}
+          {/* {filtered
             .filter((el) => el.completed === params)
             .map((todo) => (
               <TodoItem key={todo.id} {...todo} />
-            ))}
-          {/* {console.log(params)} */}
+            ))} */}
         </ul>
       )
     } else {
