@@ -22,7 +22,7 @@ export default function Search(props) {
         onChange={({ target: { value } }) => props.search(value)}
         placeholder='Search todo'
       />
-      <Sorting />
+      {/* <Sorting /> */}
     </div>
   )
 }
