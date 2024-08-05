@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 import { removeTodo, toggleTodoCompleted, changeText } from '../store/todoSlice'
 import ModalWindow from './Modal'
-import { Card, Switch, notification, Button, Tooltip, Tooltip } from 'antd'
+import { Card, Switch, notification, Button, Tooltip } from 'antd'
 import { CloseOutlined, EditOutlined, CheckOutlined } from '@ant-design/icons'
 
 const Context = React.createContext({
