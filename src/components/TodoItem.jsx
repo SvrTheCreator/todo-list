@@ -71,9 +71,8 @@ export default function TodoItem({ id, text, completed, time, date }) {
               icon={<CloseOutlined />}
             />
           </Tooltip>
-          <div className='todo__date-time'>
+          <div className='todo__date'>
             <div>{date}</div>
-            <div>{time}</div>
           </div>
           <Tooltip title='Change todo'>
             <Button
