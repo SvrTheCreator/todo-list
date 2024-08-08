@@ -1,4 +1,16 @@
+body {
+  background-color: white;
+}
+.dark {
+  transition: background-color 0.2s ease-in-out;
+  background-color: #252526;
+  .ant-tooltip-inner {
+    background-color: #2d2d2d;
+  }
+}
+
 .app {
+  border: 0.1px solid white;
   text-align: center;
   min-width: 317.81px;
   .todo__label {

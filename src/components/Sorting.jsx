@@ -5,7 +5,7 @@ import {
   SortAscendingOutlined,
   UpOutlined,
 } from '@ant-design/icons'
-import { Dropdown, Space } from 'antd'
+import { ConfigProvider, Dropdown, Space } from 'antd'
 import { useDispatch } from 'react-redux'
 import { sortTodos } from '../store/todoSlice'
 
@@ -52,18 +52,20 @@ export default function Sorting() {
   ]
 
   return (
-    <Dropdown
-      menu={{
-        items,
-        onClick,
-      }}
-    >
-      <a onClick={(e) => e.preventDefault()}>
-        <Space>
-          Sorting
-          <DownOutlined />
-        </Space>
-      </a>
-    </Dropdown>
+    <ConfigProvider theme={{ token: { colorTextBase: 'black' } }}>
+      <Dropdown
+        menu={{
+          items,
+          onClick,
+        }}
+      >
+        <a onClick={(e) => e.preventDefault()}>
+          <Space>
+            Sorting
+            <DownOutlined />
+          </Space>
+        </a>
+      </Dropdown>
+    </ConfigProvider>
   )
 }

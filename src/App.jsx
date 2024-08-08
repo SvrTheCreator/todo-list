@@ -1,5 +1,13 @@
 import { useState } from 'react'
-import { Typography, Card, FloatButton } from 'antd'
+import {
+  Typography,
+  Card,
+  FloatButton,
+  Space,
+  ConfigProvider,
+  Button,
+} from 'antd'
+import { MoonOutlined, SunOutlined } from '@ant-design/icons'
 import TodoList from './components/TodoList'
 import InputField from './components/InputField'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,11 +21,11 @@ const { Title } = Typography
 function App() {
   const [text, setText] = useState('')
   const [currentCategory, setCurrentCategory] = useState('all')
+  const [currentTheme, setCurrentTheme] = useState('light')
   const dispatch = useDispatch()
   const todos = useSelector((state) => state.todos.todos)
 
   const onClickCategory = (e) => {
-    // console.log('click ', e)
     setCurrentCategory(e.key)
   }
 
@@ -26,36 +34,82 @@ function App() {
     setText('')
   }
 
+  const lightTheme = {
+    colorBgContainer: 'white',
+    colorTextBase: 'black',
+  }
+  const darkTheme = {
+    colorBgContainer: '#252526',
+    colorTextBase: 'white',
+    // colorBorder: 'green',
+  }
+  const changeTheme = (theme) => {
+    document.body.classList.toggle('dark')
+    setCurrentTheme(theme)
+  }
+
   return (
-    <Card className='app' bordered={false}>
-      <Title level={1} style={{ color: '#1677ff' }}>
-        Todo list
-      </Title>
-      <InputField text={text} setText={setText} addTodo={addTask} />
-      {todos.length > 0 && (
-        <Categories
-          currentCategory={currentCategory}
-          setCurrentCategory={setCurrentCategory}
-          onClickCategory={onClickCategory}
-        />
-      )}
-      <Routes>
-        <Route
-          path='/'
-          element={<TodoList currentCategory={currentCategory} />}
-        />
-        <Route
-          path='/active'
-          element={<TodoList currentCategory={currentCategory} />}
-        />
-        <Route
-          path='/completed'
-          element={<TodoList currentCategory={currentCategory} />}
-        />
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
-      <FloatButton.BackTop />
-    </Card>
+    <ConfigProvider
+      theme={{
+        token: currentTheme === 'light' ? lightTheme : darkTheme,
+      }}
+    >
+      <Card className='app' bordered={false}>
+        <Title level={1} style={{ color: '#1677ff' }}>
+          Todo list
+        </Title>
+        <InputField text={text} setText={setText} addTodo={addTask} />
+        {todos.length > 0 && (
+          <Categories
+            currentCategory={currentCategory}
+            setCurrentCategory={setCurrentCategory}
+            onClickCategory={onClickCategory}
+          />
+        )}
+        <Routes>
+          <Route
+            path='/'
+            element={<TodoList currentCategory={currentCategory} />}
+          />
+          <Route
+            path='/active'
+            element={<TodoList currentCategory={currentCategory} />}
+          />
+          <Route
+            path='/completed'
+            element={<TodoList currentCategory={currentCategory} />}
+          />
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorTextBase: 'black',
+            },
+          }}
+        >
+          <FloatButton.Group
+            shape='circle'
+            style={{
+              insetInlineEnd: 24,
+            }}
+          >
+            <FloatButton
+              tooltip={currentTheme === 'light' ? 'dark theme' : 'light theme'}
+              onClick={() =>
+                currentTheme === 'light'
+                  ? changeTheme('dark')
+                  : changeTheme('light')
+              }
+              icon={
+                currentTheme === 'light' ? <MoonOutlined /> : <SunOutlined />
+              }
+            />
+            <FloatButton.BackTop tooltip={'Back top'} visibilityHeight={0} />
+          </FloatButton.Group>
+        </ConfigProvider>
+      </Card>
+    </ConfigProvider>
   )
 }
 
