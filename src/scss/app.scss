@@ -16,14 +16,16 @@
     padding: 0;
     .todo {
       margin: 20px 0 20px 0;
-      &__date-time {
-        color: grey;
+      &__date {
+        color: rgba(184, 184, 184, 0.7);
+        // margin-top: 30px;
       }
       &__content .ant-card-body {
         display: grid;
         grid-template-areas:
           'input todo close'
-          'date todo  change ';
+          '. todo  change'
+          '.  date  .';
         column-gap: 10px;
       }
       &__text {
@@ -33,7 +35,7 @@
         // hyphens: auto;
       }
 
-      &__date-time {
+      &__date {
         grid-area: date;
         flex-direction: column;
         div {
@@ -51,7 +53,7 @@
         grid-area: change;
       }
       &__text,
-      &__date-time,
+      &__date,
       &__checked-input,
       &__close,
       &__change {
@@ -69,14 +71,14 @@
   .app {
     min-width: 456.2px;
     ul {
-      .todo__date-time {
+      .todo__date {
         div {
-          font-size: 14px;
+          font-size: 12px;
         }
       }
-      .todo__checked-input {
-        width: 56px;
-      }
+      // .todo__checked-input {
+      //   width: 56px;
+      // }
     }
   }
 }
@@ -88,7 +90,7 @@
   }
   .app {
     min-width: 606.2px;
-    &__date-time {
+    &__date {
       div {
         font-size: 14px;
       }
@@ -102,7 +104,7 @@
   }
   .app {
     min-width: 806.2px;
-    &__date-time {
+    &__date {
       div {
         font-size: 14px;
       }

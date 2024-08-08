@@ -1,40 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
+import moment from 'moment'
 
 const todoSlice = createSlice({
   name: 'todos',
   initialState: {
     todos: [],
-    filteredTodos: [],
   },
   reducers: {
     addTodo(state, action) {
-      let currentDate = new Date()
-      const Hour = currentDate.getHours()
-      const Minutes = currentDate.getMinutes()
-      const Seconds = currentDate.getSeconds()
-      const day = currentDate.getDate()
-      const month = currentDate.getMonth() + 1
-      const year = currentDate.getFullYear()
-      function twoDigits(num) {
-        return ('0' + num).slice(-2)
-      }
-
+      const now = moment()
+      const currentDate = now.format('DD/MM/YY, HH:mm:ss')
       if (action.payload.text.trim().length) {
         state.todos.unshift({
           id: Math.floor(Math.random() * 1000),
           text: action.payload.text,
           completed: false,
-          order: Math.floor(Math.random() * 1000),
-          time: `${
-            twoDigits(Hour) +
-            ':' +
-            twoDigits(Minutes) +
-            ':' +
-            twoDigits(Seconds)
-          }`,
-          date: `${
-            twoDigits(day) + '/' + twoDigits(month) + '/' + twoDigits(year)
-          }`,
+          date: currentDate,
         })
       }
     },
@@ -53,10 +34,53 @@ const todoSlice = createSlice({
       )
       changeTodo.text = action.payload.newValue
     },
+    sortTodos(state, action) {
+      if (action.payload.key === 'text-upper') {
+        state.todos.sort((a, b) => {
+          if (a.text.toLowerCase() < b.text.toLowerCase()) {
+            return -1
+          }
+          if (a.text.toLowerCase() > b.text.toLowerCase()) {
+            return 1
+          }
+          return 0
+        })
+      }
+      if (action.payload.key === 'text-down') {
+        state.todos.sort((a, b) => {
+          if (a.text.toLowerCase() > b.text.toLowerCase()) {
+            return -1
+          }
+          if (a.text.toLowerCase() < b.text.toLowerCase()) {
+            return 1
+          }
+          return 0
+        })
+      }
+      if (action.payload.key === 'date-upper') {
+        state.todos.sort(
+          (a, b) =>
+            moment(b.date, 'DD/MM/YY, HH:mm:ss') -
+            moment(a.date, 'DD/MM/YY, HH:mm:ss')
+        )
+      }
+      if (action.payload.key === 'date-down') {
+        state.todos.sort(
+          (a, b) =>
+            moment(a.date, 'DD/MM/YY, HH:mm:ss') -
+            moment(b.date, 'DD/MM/YY, HH:mm:ss')
+        )
+      }
+    },
   },
 })
 
-export const { addTodo, removeTodo, toggleTodoCompleted, changeText } =
-  todoSlice.actions
+export const {
+  addTodo,
+  removeTodo,
+  toggleTodoCompleted,
+  changeText,
+  sortTodos,
+} = todoSlice.actions
 
 export default todoSlice.reducer

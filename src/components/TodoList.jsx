@@ -36,16 +36,7 @@ export default function TodoList({ currentCategory }) {
       .filter((el) => el.completed === params)
       .map((todo) => <TodoItem key={todo.id} {...todo} />)
     if (currentCategory === 'completed' || currentCategory === 'active') {
-      return (
-        <ul>
-          {status.length > 0 ? status : <NowEmpty />}
-          {/* {filtered
-            .filter((el) => el.completed === params)
-            .map((todo) => (
-              <TodoItem key={todo.id} {...todo} />
-            ))} */}
-        </ul>
-      )
+      return <ul>{status.length > 0 ? status : <NowEmpty />}</ul>
     } else {
       return (
         <ul>

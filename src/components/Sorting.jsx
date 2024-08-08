@@ -1,27 +1,53 @@
 import React from 'react'
-import { DownOutlined } from '@ant-design/icons'
-import { Dropdown, message, Space } from 'antd'
-import { useSelector } from 'react-redux'
+import {
+  DownOutlined,
+  SortDescendingOutlined,
+  SortAscendingOutlined,
+  UpOutlined,
+} from '@ant-design/icons'
+import { Dropdown, Space } from 'antd'
+import { useDispatch } from 'react-redux'
+import { sortTodos } from '../store/todoSlice'
+
+const styleForSort = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '5px',
+}
 
 export default function Sorting() {
-  const todos = useSelector((state) => state.todos.todos)
+  const dispatch = useDispatch()
 
   const onClick = ({ key }) => {
-    message.info(`Click on item ${key}`)
-    console.log(todos)
+    dispatch(sortTodos({ key }))
   }
   const items = [
     {
-      label: '1nd menu item',
-      key: '1',
+      label: <SortDescendingOutlined />,
+      key: 'text-upper',
     },
     {
-      label: '2nd menu item',
-      key: '2',
+      label: <SortAscendingOutlined />,
+      key: 'text-down',
     },
     {
-      label: '3rd menu item',
-      key: '3',
+      label: (
+        <div style={styleForSort}>
+          date
+          <UpOutlined />
+        </div>
+      ),
+      key: 'date-upper',
+    },
+    {
+      label: (
+        <div style={styleForSort}>
+          date
+          <DownOutlined />
+        </div>
+      ),
+      key: 'date-down',
     },
   ]
 
