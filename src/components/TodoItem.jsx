@@ -9,7 +9,7 @@ const Context = React.createContext({
   name: 'Default',
 })
 
-export default function TodoItem({ id, text, completed, time, date }) {
+export default function TodoItem({ currentTheme, id, text, completed, date }) {
   const dispatch = useDispatch()
   const [newValue, setNewValue] = useState('')
   const [openChangeModal, setOpenChangeModal] = useState(false)
@@ -85,6 +85,7 @@ export default function TodoItem({ id, text, completed, time, date }) {
         </Card>
       </li>
       <ModalWindow
+        currentTheme={currentTheme}
         newValue={newValue}
         setNewValue={setNewValue}
         changeNewTodo={changeNewTodo}

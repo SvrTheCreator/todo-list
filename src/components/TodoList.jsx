@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import Search from './Search'
 import NowEmpty from './NowEmpty'
 
-export default function TodoList({ currentCategory }) {
+export default function TodoList({ currentTheme, currentCategory }) {
   const todos = useSelector((state) => state.todos.todos)
   const [filtered, setFiltered] = useState([])
 
@@ -34,14 +34,16 @@ export default function TodoList({ currentCategory }) {
   function AllItems(params) {
     const status = filtered
       .filter((el) => el.completed === params)
-      .map((todo) => <TodoItem key={todo.id} {...todo} />)
+      .map((todo) => (
+        <TodoItem currentTheme={currentTheme} key={todo.id} {...todo} />
+      ))
     if (currentCategory === 'completed' || currentCategory === 'active') {
       return <ul>{status.length > 0 ? status : <NowEmpty />}</ul>
     } else {
       return (
         <ul>
           {filtered.map((todo) => (
-            <TodoItem key={todo.id} {...todo} />
+            <TodoItem currentTheme={currentTheme} key={todo.id} {...todo} />
           ))}
         </ul>
       )

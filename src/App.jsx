@@ -6,6 +6,7 @@ import {
   Space,
   ConfigProvider,
   Button,
+  Modal,
 } from 'antd'
 import { MoonOutlined, SunOutlined } from '@ant-design/icons'
 import TodoList from './components/TodoList'
@@ -41,7 +42,6 @@ function App() {
   const darkTheme = {
     colorBgContainer: '#252526',
     colorTextBase: 'white',
-    // colorBorder: 'green',
   }
   const changeTheme = (theme) => {
     document.body.classList.toggle('dark')
@@ -58,7 +58,12 @@ function App() {
         <Title level={1} style={{ color: '#1677ff' }}>
           Todo list
         </Title>
-        <InputField text={text} setText={setText} addTodo={addTask} />
+        <InputField
+          currentTheme={currentTheme}
+          text={text}
+          setText={setText}
+          addTodo={addTask}
+        />
         {todos.length > 0 && (
           <Categories
             currentCategory={currentCategory}
@@ -69,15 +74,30 @@ function App() {
         <Routes>
           <Route
             path='/'
-            element={<TodoList currentCategory={currentCategory} />}
+            element={
+              <TodoList
+                currentTheme={currentTheme}
+                currentCategory={currentCategory}
+              />
+            }
           />
           <Route
             path='/active'
-            element={<TodoList currentCategory={currentCategory} />}
+            element={
+              <TodoList
+                currentTheme={currentTheme}
+                currentCategory={currentCategory}
+              />
+            }
           />
           <Route
             path='/completed'
-            element={<TodoList currentCategory={currentCategory} />}
+            element={
+              <TodoList
+                currentTheme={currentTheme}
+                currentCategory={currentCategory}
+              />
+            }
           />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>

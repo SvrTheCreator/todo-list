@@ -10,11 +10,23 @@ export default function ModalWindow({
   isOpen,
   onClose,
   handleKeyPress,
+  currentTheme,
 }) {
   return (
     <>
       {isOpen && (
-        <Modal className='modal' open={isOpen} onCancel={onClose} footer={null}>
+        <Modal
+          className='modal modal-active'
+          open={isOpen}
+          onCancel={onClose}
+          footer={null}
+          styles={{
+            content:
+              currentTheme === 'light'
+                ? { backgroundColor: '#ffffff' }
+                : { backgroundColor: '#252526' },
+          }}
+        >
           <div className='modal__wrapper'>
             <div
               className='modal__content'
